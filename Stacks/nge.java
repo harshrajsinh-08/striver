@@ -4,18 +4,15 @@ import java.util.*;
 public class nge {
     public static int[] nextGreater(int[] arr){
         int n = arr.length;
-        int nge[] = new int[n];
+        int[] nge = new int[n];
         Stack<Integer> st = new Stack<>();
-        for(int i = 2*n-1;i>=0;i--){
+        for(int i=2*n-1;i>=0;i--){
             while(!st.isEmpty() && st.peek() <=arr[i%n]){
                 st.pop();
             }
             if(i<n){
-                if(st.isEmpty()){
-                    nge[i] = -1;
-                }else{
-                    nge[i] = st.peek();
-                }
+                if(!st.isEmpty()) nge[i] = st.peek();
+                else nge[i] = -1;
             }
             st.push(arr[i%n]);
         }
